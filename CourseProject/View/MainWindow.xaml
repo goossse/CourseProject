@@ -1,0 +1,128 @@
+﻿<Window x:Class="CourseProject.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="191*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="Grid_Search" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="350*"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="List_Citizens"
+                     SelectedItem="{Binding SelectedItem}"
+                     HorizontalAlignment="Left" Height="283" Margin="10,10,0,0" ItemsSource="{Binding Citizens}"
+                     VerticalAlignment="Top" Width="199" Grid.Row="2" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" SelectionChanged="List_Citizens_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding CitizenName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0"/>
+                            <TextBlock Text="{Binding CitizenSurname, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="Label_Search" Content="Поиск гражданина" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="199" FontSize="18" Margin="10,0,0,0"/>
+            </Grid>
+            <Button x:Name="Button_AddCitizen" Command="{Binding AddCitizenCommand}" Content="Добавить гражданина" HorizontalAlignment="Left" Margin="10,298,0,0" Grid.Row="2" VerticalAlignment="Top" Width="199" Height="30" Background="#FFCEFBFF" Click="Button_AddCitizen_Click"/>
+        </Grid>
+        <Grid DataContext="{Binding SelectedItem, ElementName=List_Citizens}" Grid.Column="1" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="553">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Right" Height="176" Margin="0,0,10,80" VerticalAlignment="Bottom" Width="138" Grid.RowSpan="2" Grid.Column="1" Background="#FFF0F0F0">
+                <Image x:Name="Image_CitizenPhoto" HorizontalAlignment="Left" Height="156" Margin="10,10,0,0" VerticalAlignment="Top" Width="118" Source="icons/name.png"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="113" Margin="10,10,0,0" VerticalAlignment="Top" Width="150">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="Label_Name" Content="Имя:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="150" Background="White"/>
+                <Label x:Name="Label_Surname" Content="Фамилия:" HorizontalAlignment="Left" Height="28" Grid.Row="2" VerticalAlignment="Top" Width="150" Background="White"/>
+                <Label x:Name="Label_NameOf" Content="{Binding CitizenName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Grid.Row="1" VerticalAlignment="Top" Width="150" Background="#FFF0F0F0"/>
+                <Label x:Name="Label_SurnameOf" Content="{Binding CitizenSurname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Grid.Row="3" VerticalAlignment="Top" Width="150" Background="#FFF0F0F0"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="113" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="Label_Birth" Content="Дата рождения:" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="150" Background="White"/>
+                <Label x:Name="Label_Gender" Content="Пол:" HorizontalAlignment="Left" Height="28" Grid.Row="2" VerticalAlignment="Top" Width="150"/>
+                <Label x:Name="Label_BirthOf" Content="{Binding CitizenDateOfBirth, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Grid.Row="1" VerticalAlignment="Top" Width="150" Background="#FFF0F0F0"/>
+                <Label x:Name="Label_GenderOf" Content="{Binding GenderId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Grid.Row="3" VerticalAlignment="Top" Width="150" Background="#FFF0F0F0"/>
+            </Grid>
+            <ListBox x:Name="List_Protocols" DataContext="{Binding SelectedItem, ElementName=List_Citizens}" ItemsSource="{Binding Protocols, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" HorizontalAlignment="Left" Height="340" Margin="10,49,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="217" Background="#FFF0F0F0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding ProtocolId, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="0"/>
+                            <Label Content="{Binding ProtocolPlace, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="1"/>
+                            <Label Content="{Binding ProtocolDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="2"/>
+                            <Label Content="{Binding ProtocolIsPunished, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="3"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            <Label x:Name="Label_ProtocolHistory" Content="История штрафов:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="217" FontSize="18" Margin="10,10,0,0" Grid.Column="2"/>
+        </Grid>
+        <Button x:Name="Button_DeleteCitizen" Content="Удалить" Command="{Binding DeleteCitizenCommand}" CommandParameter="{Binding SelectedItem, ElementName=List_Citizens}" HorizontalAlignment="Left" Height="30" Margin="20,368,0,0" VerticalAlignment="Top" Width="138" Background="#FFCEFBFF" Grid.Column="1"/>
+        <Button x:Name="Button_DeleteProtocol" Content="Удалить штраф" Command="{Binding DeleteProtocolCommand}" CommandParameter="{Binding SelectedItem, ElementName=List_Protocols}" HorizontalAlignment="Left" Height="30" Margin="178,368,0,0" VerticalAlignment="Top" Width="138" Background="#FFCEFBFF" Grid.Column="1"/>
+        <Button x:Name="Button_ChangeInfo" Command="{Binding EditCitizenCommand}" CommandParameter="{Binding SelectedItem, ElementName=List_Citizens}" Content="Изменить инф-ю" HorizontalAlignment="Left" Height="30" Margin="20,333,0,0" VerticalAlignment="Top" Width="138" Background="#FFCEFBFF" Grid.Column="1"/>
+
+    </Grid>
+</Window>

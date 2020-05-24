@@ -1,0 +1,26 @@
+﻿<Window x:Class="CourseProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="300" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFBDBDBD" Icon="icons/police.png" AllowsTransparency="True" WindowStyle="None">
+    <Grid Width="600" Height="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Button_Enter" Content="Вход" HorizontalAlignment="Left" Margin="160,200,0,0" VerticalAlignment="Top" Width="125" Height="35" Background="#FFCEFBFF" Cursor="Hand" FontSize="18"/>
+        <TextBox x:Name="TextBox_Login" HorizontalAlignment="Left" Height="30" Margin="200,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="18" MaxLength="19" MaxLines="1" Cursor="IBeam" UndoLimit="19" Background="#FFECECEC" Foreground="#FF7A7A7A" SelectionBrush="#FF5E88AA"/>
+        <Image x:Name="Image_Login" HorizontalAlignment="Left" Height="30" Margin="164,75,0,0" VerticalAlignment="Top" Width="31" Source="icons/name.png"/>
+        <Image x:Name="Image_Password" HorizontalAlignment="Left" Height="30" Margin="160,125,0,0" VerticalAlignment="Top" Width="31" Source="icons/lock.png"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="30" Margin="200,125,0,0" VerticalAlignment="Top" Width="200" Background="#FFECECEC" SelectionBrush="#FF5E88AA" Foreground="#FF7A7A7A" FontSize="18"/>
+        <Button x:Name="Button_Registration" Content="Регистрация" HorizontalAlignment="Left" Margin="325,200,0,0" VerticalAlignment="Top" Width="125" Height="35" Background="#FFCEFBFF" Cursor="Hand" FontSize="18"/>
+        <Button x:Name="Button_Exit" Content="" HorizontalAlignment="Right" Height="25" Margin="0,10,10,0" VerticalAlignment="Top" Width="50" Click="Button_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFF9D9D"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>
